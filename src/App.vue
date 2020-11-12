@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="pb-4 pt-3 pt-md-5">
+    <control-app @get-jadwal="openDisplay($event)"></control-app>
+    <jadwal-component v-if="data" :data="data"></jadwal-component>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import control from "./components/control";
+import displayJadwalHarian from "./components/display-jadwal-harian";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    "jadwal-component": displayJadwalHarian,
+    "control-app": control,
+  },
+  data() {
+    return {
+      data: null,
+    };
+  },
+  methods: {
+    openDisplay(obj) {
+      this.data = obj;
+    },
+  },
+};
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: "Nunito", sans-serif;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 </style>
